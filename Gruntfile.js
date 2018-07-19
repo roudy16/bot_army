@@ -36,4 +36,6 @@ module.exports = function(grunt) {
             }
         }
     });
+
+    grunt.registerTask("transpileAndDeploy", "Transpile with babel and deploy to screeps", ["babel", "screeps"])
 };
