@@ -1,8 +1,20 @@
+export const Role = {
+    BUILDER_LT: 'a',
+    HARVESTER_LT: 'b',
+    UPGRADER_LT: 'c',
+    BUILDER_SM: 'd',
+    HARVESTER_SM: 'e',
+    UPGRADER_SM: 'f'
+};
+
 export function calcCreepCountMap() {
     let creepCountMap = {
         'a': 0,
         'b' : 0,
         'c' : 0,
+        'd': 0,
+        'e' : 0,
+        'f' : 0,
     };
 
     for (let name in Game.creeps) {
@@ -14,6 +26,9 @@ export function calcCreepCountMap() {
         case Role.BUILDER_LT:
         case Role.HARVESTER_LT:
         case Role.UPGRADER_LT:
+        case Role.BUILDER_SM:
+        case Role.HARVESTER_SM:
+        case Role.UPGRADER_SM:
             creepCountMap[role]++;
             break;
         default:
@@ -24,8 +39,3 @@ export function calcCreepCountMap() {
     return creepCountMap;
 }
 
-export const Role = {
-    BUILDER_LT: 'a',
-    HARVESTER_LT: 'b',
-    UPGRADER_LT: 'c'
-};
