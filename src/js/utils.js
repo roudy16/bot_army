@@ -39,3 +39,16 @@ export function calcCreepCountMap() {
     return creepCountMap;
 }
 
+/**
+ *
+ * @param {Array<String>} body_parts
+ * @returns {number}
+ */
+export function calcCreepCost(body_parts) {
+    let sum = 0;
+    body_parts.forEach(part => {
+        sum += BODYPART_COST[part];
+    });
+    return sum;
+}
+

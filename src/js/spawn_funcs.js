@@ -1,12 +1,17 @@
 import * as utils from "utils"
 
-export function spawnTinyHarvester() {
+/**
+ *
+ * @param {StructureSpawn} spawner
+ * @returns {number}
+ */
+export function spawnTinyHarvester(spawner) {
     let id = 0;
     let err = OK;
     let retry = true;
 
     while (retry) {
-        err = Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], "HARVESTER" + id,
+        err = spawner.spawnCreep(CreepComponents.LT_WORKER, "HARVESTER" + id,
             {memory: {role: utils.Role.HARVESTER_LT}});
 
         switch (err) {
@@ -22,13 +27,18 @@ export function spawnTinyHarvester() {
     return err;
 }
 
-export function spawnTinyBuilder() {
+/**
+ *
+ * @param {StructureSpawn} spawner
+ * @returns {number}
+ */
+export function spawnTinyBuilder(spawner) {
     let id = 0;
     let err = OK;
     let retry = true;
 
     while (retry) {
-        err = Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], "BUILDER" + id,
+        err = spawner.spawnCreep(CreepComponents.LT_WORKER, "BUILDER" + id,
             {memory: {role: utils.Role.BUILDER_LT}});
 
         switch (err) {
@@ -44,13 +54,18 @@ export function spawnTinyBuilder() {
     return err;
 }
 
-export function spawnTinyUpgrader() {
+/**
+ *
+ * @param {StructureSpawn} spawner
+ * @returns {number}
+ */
+export function spawnTinyUpgrader(spawner) {
     let id = 0;
     let err = OK;
     let retry = true;
 
     while (retry) {
-        err = Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], "UPGRADER" + id,
+        err = spawner.spawnCreep(CreepComponents.LT_WORKER, "UPGRADER" + id,
             {memory: {role: utils.Role.UPGRADER_LT}});
 
         switch (err) {
@@ -66,13 +81,18 @@ export function spawnTinyUpgrader() {
     return err;
 }
 
-export function spawnSmallHarvester() {
+/**
+ *
+ * @param {StructureSpawn} spawner
+ * @returns {number}
+ */
+export function spawnSmallHarvester(spawner) {
     let id = 0;
     let err = OK;
     let retry = true;
 
     while (retry) {
-        err = Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE], "HARVESTER" + id,
+        err = spawner.spawnCreep(CreepComponents.SM_WORKER, "HARVESTER" + id,
             {memory: {role: utils.Role.HARVESTER_LT}});
 
         switch (err) {
@@ -88,13 +108,18 @@ export function spawnSmallHarvester() {
     return err;
 }
 
-export function spawnSmallBuilder() {
+/**
+ *
+ * @param {StructureSpawn} spawner
+ * @returns {number}
+ */
+export function spawnSmallBuilder(spawner) {
     let id = 0;
     let err = OK;
     let retry = true;
 
     while (retry) {
-        err = Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE], "BUILDER" + id,
+        err = spawner.spawnCreep(CreepComponents.SM_WORKER, "BUILDER" + id,
             {memory: {role: utils.Role.BUILDER_LT}});
 
         switch (err) {
@@ -110,13 +135,18 @@ export function spawnSmallBuilder() {
     return err;
 }
 
-export function spawnSmallUpgrader() {
+/**
+ *
+ * @param {StructureSpawn} spawner
+ * @returns {number}
+ */
+export function spawnSmallUpgrader(spawner) {
     let id = 0;
     let err = OK;
     let retry = true;
 
     while (retry) {
-        err = Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE], "UPGRADER" + id,
+        err = spawner.spawnCreep(CreepComponents.SM_WORKER, "UPGRADER" + id,
             {memory: {role: utils.Role.UPGRADER_LT}});
 
         switch (err) {
@@ -131,3 +161,8 @@ export function spawnSmallUpgrader() {
 
     return err;
 }
+
+export const CreepComponents = {
+    LT_WORKER: [WORK, CARRY, MOVE],
+    SM_WORKER: [WORK, WORK, CARRY, CARRY, MOVE, MOVE],
+};

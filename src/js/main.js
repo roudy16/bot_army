@@ -3,8 +3,16 @@ import * as spawn_funcs from "spawn_funcs"
 import role_harvester from "role_harvester";
 import role_upgrader from "role_upgrader";
 import role_builder from "role_builder";
+import {calcCreepCost} from "utils";
+import {CreepComponents} from "spawn_funcs";
 
 export function loop() {
+    // ########################
+
+
+    // ########################
+
+
     let tower = Game.getObjectById('TOWER_ID');
     if(tower) {
         let closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
@@ -26,16 +34,32 @@ export function loop() {
         }
     }
 
+    let spawner = Game.spawns['Spawn1'];
+    let spawn_room = spawner.room;
+    let room_energy_cap = spawn_room.energyCapacityAvailable;
+
     let creepCountMap = utils.calcCreepCountMap();
 
-    if (creepCountMap[utils.Role.UPGRADER_LT] + creepCountMap[utils.Role.UPGRADER_SM] < 2) {
-        spawn_funcs.spawnTinyUpgrader();
+    if (creepCountMap[utils.Role.UPGRADER_LT] + creepCountMap[utils.Role.UPGRADER_SM] < 4) {
+        if (room_energy_cap < 400) {
+            spawn_funcs.spawnTinyUpgrader(spawner);
+        } else {
+            spawn_funcs.spawnSmallUpgrader(spawner);
+        }
     }
-    if (creepCountMap[utils.Role.BUILDER_LT] + creepCountMap[utils.Role.BUILDER_SM] < 2) {
-        spawn_funcs.spawnTinyBuilder();
+    if (creepCountMap[utils.Role.BUILDER_LT] + creepCountMap[utils.Role.BUILDER_SM] < 4) {
+        if (room_energy_cap < 400) {
+            spawn_funcs.spawnTinyBuilder(spawner);
+        } else {
+            spawn_funcs.spawnSmallBuilder(spawner);
+        }
     }
-    if (creepCountMap[utils.Role.HARVESTER_LT] + creepCountMap[utils.Role.HARVESTER_SM] < 2) {
-        spawn_funcs.spawnTinyHarvester();
+    if (creepCountMap[utils.Role.HARVESTER_LT] + creepCountMap[utils.Role.HARVESTER_SM] < 4) {
+        if (room_energy_cap < 400) {
+            spawn_funcs.spawnTinyHarvester(spawner);
+        } else {
+            spawn_funcs.spawnSmallHarvester(spawner);
+        }
     }
 
     for(let name in Game.creeps) {
