@@ -1,31 +1,133 @@
 import * as utils from "utils"
 
 export function spawnTinyHarvester() {
-    return Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], null,
-        {role: utils.Role.HARVESTER_LT});
+    let id = 0;
+    let err = OK;
+    let retry = true;
+
+    while (retry) {
+        err = Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], "HARVESTER" + id,
+            {memory: {role: utils.Role.HARVESTER_LT}});
+
+        switch (err) {
+            case (ERR_NAME_EXISTS):
+                id++;
+                break;
+            default:
+                retry = false;
+                break;
+        }
+    }
+
+    return err;
 }
 
 export function spawnTinyBuilder() {
-    return Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], null,
-        {role: utils.Role.BUILDER_LT});
+    let id = 0;
+    let err = OK;
+    let retry = true;
+
+    while (retry) {
+        err = Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], "BUILDER" + id,
+            {memory: {role: utils.Role.BUILDER_LT}});
+
+        switch (err) {
+            case (ERR_NAME_EXISTS):
+                id++;
+                break;
+            default:
+                retry = false;
+                break;
+        }
+    }
+
+    return err;
 }
 
 export function spawnTinyUpgrader() {
-    return Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], null,
-        {role: utils.Role.UPGRADER_LT});
+    let id = 0;
+    let err = OK;
+    let retry = true;
+
+    while (retry) {
+        err = Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], "UPGRADER" + id,
+            {memory: {role: utils.Role.UPGRADER_LT}});
+
+        switch (err) {
+            case (ERR_NAME_EXISTS):
+                id++;
+                break;
+            default:
+                retry = false;
+                break;
+        }
+    }
+
+    return err;
 }
 
 export function spawnSmallHarvester() {
-    return Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE], null,
-        {role: utils.Role.HARVESTER_LT});
+    let id = 0;
+    let err = OK;
+    let retry = true;
+
+    while (retry) {
+        err = Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE], "HARVESTER" + id,
+            {memory: {role: utils.Role.HARVESTER_LT}});
+
+        switch (err) {
+            case (ERR_NAME_EXISTS):
+                id++;
+                break;
+            default:
+                retry = false;
+                break;
+        }
+    }
+
+    return err;
 }
 
 export function spawnSmallBuilder() {
-    return Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE], null,
-        {role: utils.Role.BUILDER_LT});
+    let id = 0;
+    let err = OK;
+    let retry = true;
+
+    while (retry) {
+        err = Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE], "BUILDER" + id,
+            {memory: {role: utils.Role.BUILDER_LT}});
+
+        switch (err) {
+            case (ERR_NAME_EXISTS):
+                id++;
+                break;
+            default:
+                retry = false;
+                break;
+        }
+    }
+
+    return err;
 }
 
 export function spawnSmallUpgrader() {
-    return Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE], null,
-        {role: utils.Role.UPGRADER_LT});
+    let id = 0;
+    let err = OK;
+    let retry = true;
+
+    while (retry) {
+        err = Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE], "UPGRADER" + id,
+            {memory: {role: utils.Role.UPGRADER_LT}});
+
+        switch (err) {
+            case (ERR_NAME_EXISTS):
+                id++;
+                break;
+            default:
+                retry = false;
+                break;
+        }
+    }
+
+    return err;
 }
