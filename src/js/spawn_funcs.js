@@ -6,25 +6,8 @@ import * as utils from "utils"
  * @returns {number}
  */
 export function spawnTinyHarvester(spawner) {
-    let id = 0;
-    let err = OK;
-    let retry = true;
-
-    while (retry) {
-        err = spawner.spawnCreep(CreepComponents.LT_WORKER, "HARVESTER" + id,
-            {memory: {role: utils.Role.HARVESTER_LT}});
-
-        switch (err) {
-            case (ERR_NAME_EXISTS):
-                id++;
-                break;
-            default:
-                retry = false;
-                break;
-        }
-    }
-
-    return err;
+    return spawnCreepTemplate(spawner, CreepComponents.LT_WORKER,
+        {memory: {role: utils.Role.HARVESTER_LT}}, "HARVESTER");
 }
 
 /**
@@ -33,25 +16,8 @@ export function spawnTinyHarvester(spawner) {
  * @returns {number}
  */
 export function spawnTinyBuilder(spawner) {
-    let id = 0;
-    let err = OK;
-    let retry = true;
-
-    while (retry) {
-        err = spawner.spawnCreep(CreepComponents.LT_WORKER, "BUILDER" + id,
-            {memory: {role: utils.Role.BUILDER_LT}});
-
-        switch (err) {
-            case (ERR_NAME_EXISTS):
-                id++;
-                break;
-            default:
-                retry = false;
-                break;
-        }
-    }
-
-    return err;
+    return spawnCreepTemplate(spawner, CreepComponents.LT_WORKER,
+        {memory: {role: utils.Role.BUILDER_LT}}, "BUILDER");
 }
 
 /**
@@ -60,25 +26,8 @@ export function spawnTinyBuilder(spawner) {
  * @returns {number}
  */
 export function spawnTinyUpgrader(spawner) {
-    let id = 0;
-    let err = OK;
-    let retry = true;
-
-    while (retry) {
-        err = spawner.spawnCreep(CreepComponents.LT_WORKER, "UPGRADER" + id,
-            {memory: {role: utils.Role.UPGRADER_LT}});
-
-        switch (err) {
-            case (ERR_NAME_EXISTS):
-                id++;
-                break;
-            default:
-                retry = false;
-                break;
-        }
-    }
-
-    return err;
+    return spawnCreepTemplate(spawner, CreepComponents.LT_WORKER,
+        {memory: {role: utils.Role.UPGRADER_LT}}, "UPGRADER");
 }
 
 /**
@@ -87,25 +36,8 @@ export function spawnTinyUpgrader(spawner) {
  * @returns {number}
  */
 export function spawnSmallHarvester(spawner) {
-    let id = 0;
-    let err = OK;
-    let retry = true;
-
-    while (retry) {
-        err = spawner.spawnCreep(CreepComponents.SM_WORKER, "HARVESTER" + id,
-            {memory: {role: utils.Role.HARVESTER_LT}});
-
-        switch (err) {
-            case (ERR_NAME_EXISTS):
-                id++;
-                break;
-            default:
-                retry = false;
-                break;
-        }
-    }
-
-    return err;
+    return spawnCreepTemplate(spawner, CreepComponents.SM_WORKER,
+        {memory: {role: utils.Role.HARVESTER_LT}}, "HARVESTER");
 }
 
 /**
@@ -114,25 +46,8 @@ export function spawnSmallHarvester(spawner) {
  * @returns {number}
  */
 export function spawnSmallBuilder(spawner) {
-    let id = 0;
-    let err = OK;
-    let retry = true;
-
-    while (retry) {
-        err = spawner.spawnCreep(CreepComponents.SM_WORKER, "BUILDER" + id,
-            {memory: {role: utils.Role.BUILDER_LT}});
-
-        switch (err) {
-            case (ERR_NAME_EXISTS):
-                id++;
-                break;
-            default:
-                retry = false;
-                break;
-        }
-    }
-
-    return err;
+    return spawnCreepTemplate(spawner, CreepComponents.SM_WORKER,
+        {memory: {role: utils.Role.BUILDER_LT}}, "BUILDER");
 }
 
 /**
@@ -141,13 +56,17 @@ export function spawnSmallBuilder(spawner) {
  * @returns {number}
  */
 export function spawnSmallUpgrader(spawner) {
+    return spawnCreepTemplate(spawner, CreepComponents.SM_WORKER,
+        {memory: {role: utils.Role.UPGRADER_LT}}, "UPGRADER");
+}
+
+function spawnCreepTemplate(spawner, components, options, name_root) {
     let id = 0;
     let err = OK;
     let retry = true;
 
     while (retry) {
-        err = spawner.spawnCreep(CreepComponents.SM_WORKER, "UPGRADER" + id,
-            {memory: {role: utils.Role.UPGRADER_LT}});
+        err = spawner.spawnCreep(components, name_root + id, options);
 
         switch (err) {
             case (ERR_NAME_EXISTS):

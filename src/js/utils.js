@@ -9,10 +9,10 @@ export const Role = {
 
 export function calcCreepCountMap() {
     let creepCountMap = {
-        'a': 0,
+        'a' : 0,
         'b' : 0,
         'c' : 0,
-        'd': 0,
+        'd' : 0,
         'e' : 0,
         'f' : 0,
     };
@@ -22,18 +22,18 @@ export function calcCreepCountMap() {
         let creep = Game.creeps[name];
         let role = creep.memory.role;
 
-    switch (role) {
-        case Role.BUILDER_LT:
-        case Role.HARVESTER_LT:
-        case Role.UPGRADER_LT:
-        case Role.BUILDER_SM:
-        case Role.HARVESTER_SM:
-        case Role.UPGRADER_SM:
-            creepCountMap[role]++;
-            break;
-        default:
-            break;
-    }
+        switch (role) {
+            case Role.BUILDER_LT:
+            case Role.HARVESTER_LT:
+            case Role.UPGRADER_LT:
+            case Role.BUILDER_SM:
+            case Role.HARVESTER_SM:
+            case Role.UPGRADER_SM:
+                creepCountMap[role]++;
+                break;
+            default:
+                break;
+        }
     }
 
     return creepCountMap;

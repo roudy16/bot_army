@@ -1,7 +1,6 @@
 export default role_upgrader;
 
-var role_upgrader = {
-
+export var role_upgrader = {
     /** @param {Creep} creep **/
     run: function(creep) {
         if(creep.memory.upgrading && creep.carry.energy === 0) {

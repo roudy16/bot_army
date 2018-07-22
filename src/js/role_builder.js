@@ -1,5 +1,5 @@
 export default role_builder;
-var role_builder = {
+export var role_builder = {
     /** @param {Creep} creep **/
     run: function(creep) {
         if(creep.memory.building && creep.carry.energy === 0) {

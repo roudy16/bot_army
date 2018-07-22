@@ -1,6 +1,6 @@
 export default role_harvester;
 
-var role_harvester = {
+export var role_harvester = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
